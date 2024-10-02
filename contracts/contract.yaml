@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: TODO API
+  description: >-
+    TODO API
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+paths:
+  /tasks:
+    summary: Tasks summary
+    description: Tasks description
+    get:
+      summary: Get All Tasks
+      description: ''
+      operationId: getTasks
+      tags:
+        - tasks
+      responses:
+        '200':
+          description: 'Get All Tasks'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MasterTask'
+    post:
+      summary: Create task
+      description: Create new tasks
+      operationId: createTask
+      tags:
+        - tasks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTask'
+      responses:
+        '200':
+          description: Task Sucessfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasterTask'
+        
+  /tasks/{taskId}:
+    get:
+      summary: Get Single Task
+      description: |- 
+        Get Single Task based on taskId. A taskId is a *unique Id*
+      operationId: getTaskById
+      parameters:
+        - name: taskId
+          description: TaskId whose details are to be fetched
+          in : path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Get All Tasks'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTask'
+        
+components:
+  schemas:
+    CreateTask:
+      type: object
+      properties:
+        description:
+          type: string
+        order:
+          type: number
+        createdAt:
+          type: number
+          format: date-time
+    UpdateTaskPatch:
+      type: object
+      description: ORDER - "1", DESCRIPTION - "Some Description", COMPLETED - "True/False"
+      properties:
+        field:
+          type: string
+          enum:
+            - ORDER
+            - DESCRIPTION
+            - COMPLETED
+        fieldValue:
+          oneOf:
+            - $ref: '#/components/schemas/TaskOrderUpdate'
+            - $ref: '#/components/schemas/DescriptionUpdate'
+            - $ref: '#/components/schemas/StateUpdate'
+    TaskOrderUpdate:
+      type: number
+    DescriptionUpdate:
+      type: string
+    StateUpdate:
+      type: boolean
+    MasterTask:
+      type: object
+      properties:
+        taskid:
+          type: string
+          format: uuid
+        order:
+          type: number
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-timea
+        updatedAt:
+          type: string
+          format: date-time
+        completedAt:
+          type: string
+          format: date-time
