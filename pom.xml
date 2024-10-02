@@ -8,4 +8,41 @@
     <module>todo-app</module>
     <module>todo-logic</module>
   </modules>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin -->
+    <dependency>
+      <groupId>org.openapitools</groupId>
+      <artifactId>openapi-generator-maven-plugin</artifactId>
+      <version>7.8.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.openapitools</groupId>
+        <artifactId>openapi-generator-maven-plugin</artifactId>
+        <!-- RELEASE_VERSION -->
+        <version>7.8.0</version>
+        <!-- /RELEASE_VERSION -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${project.basedir}/contracts/contract.yaml</inputSpec>
+              <generatorName>spring</generatorName>
+              <output>${project.basedir}/todo-app</output>
+              <configOptions>
+                <sourceFolder>src/gen/java/main</sourceFolder>
+              </configOptions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
