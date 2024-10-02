@@ -9,7 +9,7 @@
         <version>1</version>
     </parent>
 
-    <groupId>org.example</groupId>
+    <groupId>com.sauraedron</groupId>
     <artifactId>todo-logic</artifactId>
 
     <properties>
