@@ -5,8 +5,8 @@
   <version>1</version>
   <packaging>pom</packaging>
   <modules>
-    <module>todo-app</module>
-    <module>todo-logic</module>
+     <module>todo-app</module>
+<!--    <module>todo-logic</module>-->
   </modules>
   <properties>
     <generatedModuleName>todo-app</generatedModuleName>
@@ -34,6 +34,9 @@
               <goal>generate</goal>
             </goals>
             <configuration>
+              <globalProperties>
+                <skipFormModel>true</skipFormModel>
+              </globalProperties>
               <inputSpec>./contracts/contract.yaml</inputSpec>
               <generatorName>spring</generatorName>
               <output>${project.basedir}/${generatedModuleName}</output>
@@ -43,6 +46,7 @@
               <apiPackage>com.sauraedron</apiPackage>
               <modelPackage>com.sauraedron</modelPackage>
               <invokerPackage>com.sauraedron.web</invokerPackage>
+              <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
             </configuration>
           </execution>
         </executions>
