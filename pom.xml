@@ -8,6 +8,9 @@
     <module>todo-app</module>
     <module>todo-logic</module>
   </modules>
+  <properties>
+    <generatedModuleName>todo-app</generatedModuleName>
+  </properties>
 
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin -->
@@ -31,12 +34,15 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <inputSpec>${project.basedir}/contracts/contract.yaml</inputSpec>
+              <inputSpec>./contracts/contract.yaml</inputSpec>
               <generatorName>spring</generatorName>
-              <output>${project.basedir}/todo-app</output>
+              <output>${project.basedir}/${generatedModuleName}</output>
               <configOptions>
-                <sourceFolder>src/gen/java/main</sourceFolder>
+                <sourceFolder>src/main/java</sourceFolder>
               </configOptions>
+              <apiPackage>com.sauraedron</apiPackage>
+              <modelPackage>com.sauraedron</modelPackage>
+              <invokerPackage>com.sauraedron.web</invokerPackage>
             </configuration>
           </execution>
         </executions>
