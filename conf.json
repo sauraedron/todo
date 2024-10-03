@@ -1,0 +1,13 @@
+{
+  "apiPackage": "com.sauraedron",
+  "artifactDescription": "Todo Application",
+  "artifactId": "com.sauraedron.todo-app",
+  "artifactVersion": "0.0.1",
+  "basePackage": "com.sauraedron.web",
+  "developerEmail": "sauraedron@gmail.com",
+  "modelPackage": "com.sauraedron.wire_models",
+  "generateBuilders": true,
+  "hateoas": true,
+  "invokerPackage": "com.sauraedron",
+  "useSpringBoot3": true
+}

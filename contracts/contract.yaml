@@ -114,10 +114,14 @@ components:
           type: string
         createdAt:
           type: string
-          format: date-timea
+          format: date-time
         updatedAt:
           type: string
           format: date-time
         completedAt:
           type: string
           format: date-time
+    InternalDataStructTask:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/CreateTask'

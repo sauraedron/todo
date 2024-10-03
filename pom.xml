@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.sauraedron</groupId>
   <artifactId>todo</artifactId>
-  <version>1</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
   <modules>
      <module>todo-app</module>
@@ -13,45 +13,12 @@
   </properties>
 
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.openapitools/openapi-generator-maven-plugin -->
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
-      <groupId>org.openapitools</groupId>
-      <artifactId>openapi-generator-maven-plugin</artifactId>
-      <version>7.8.0</version>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.34</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.openapitools</groupId>
-        <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>7.8.0</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <globalProperties>
-                <skipFormModel>true</skipFormModel>
-              </globalProperties>
-              <inputSpec>./contracts/contract.yaml</inputSpec>
-              <generatorName>spring</generatorName>
-              <output>${project.basedir}/${generatedModuleName}</output>
-              <configOptions>
-                <sourceFolder>src/main/java</sourceFolder>
-              </configOptions>
-              <apiPackage>com.sauraedron</apiPackage>
-              <modelPackage>com.sauraedron.wire_objects</modelPackage>
-              <invokerPackage>com.sauraedron.web</invokerPackage>
-              <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
-              <generateAliasAsModel>true</generateAliasAsModel>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 </project>
