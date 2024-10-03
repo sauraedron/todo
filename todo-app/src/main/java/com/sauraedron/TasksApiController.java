@@ -33,7 +33,7 @@ public class TasksApiController implements TasksApi {
     }
 
     @Override
-    public ResponseEntity<TaskRequest> getTaskById(String taskId) {
+    public ResponseEntity<MasterTask> getTaskById(String taskId) {
         return TasksApi.super.getTaskById(taskId);
     }
 
@@ -42,15 +42,12 @@ public class TasksApiController implements TasksApi {
         return TasksApi.super.getTasks();
     }
 
-    @Override
-    public ResponseEntity<MasterTask> taskRequest(TaskRequest taskRequest) {
-        return this.tasksApi.taskRequest(taskRequest);
-    }
 
     @Override
     public ResponseEntity<MasterTask> createTask(TaskRequest taskRequest) {
-        return this.tasksApi.taskRequest(taskRequest);
+        return this.tasksApi.createTask(taskRequest);
     }
+
 
     public void setTasksApi(TasksApi tasksApi) {
         this.tasksApi = tasksApi;

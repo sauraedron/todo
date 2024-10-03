@@ -67,7 +67,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskRequest'
+                $ref: '#/components/schemas/MasterTask'
         
 components:
   schemas:

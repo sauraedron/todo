@@ -23,21 +23,8 @@ public class TasksApiDefaultImplementation implements TasksApi {
     }
 
     @Override
-    public ResponseEntity<TaskRequest> getTaskById(String taskId) {
-        return TasksApi.super.getTaskById(taskId);
-    }
-
-    @Override
     public ResponseEntity<List<MasterTask>> getTasks() {
         return new ResponseEntity<>(new ArrayList<>(this.taskMap.values()), HttpStatus.OK);
-    }
-
-    @Override
-    public ResponseEntity<MasterTask> taskRequest(TaskRequest taskRequest) {
-        MasterTask task = TaskFactory.createTask(taskRequest);
-        task.setCreatedAt(OffsetDateTime.now());
-        this.taskMap.put(task.getTaskid(), task);
-        return new ResponseEntity(task, HttpStatus.OK);
     }
 
     @Override
@@ -49,4 +36,11 @@ public class TasksApiDefaultImplementation implements TasksApi {
         return new ResponseEntity(task, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<MasterTask> getTaskById(String taskId) {
+        if(this.taskMap.containsKey(taskId))
+            return new ResponseEntity<>(this.taskMap.get(taskId), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
