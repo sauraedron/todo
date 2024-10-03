@@ -17,6 +17,9 @@ import java.util.Optional;
 @RequestMapping("${openapi.tODO.base-path:}")
 public class TasksApiController implements TasksApi {
 
+    @Autowired
+    TasksApi tasksApi;
+
     private final NativeWebRequest request;
 
     @Autowired
@@ -41,6 +44,15 @@ public class TasksApiController implements TasksApi {
 
     @Override
     public ResponseEntity<MasterTask> taskRequest(TaskRequest taskRequest) {
-        return TasksApi.super.taskRequest(taskRequest);
+        return this.tasksApi.taskRequest(taskRequest);
+    }
+
+    @Override
+    public ResponseEntity<MasterTask> createTask(TaskRequest taskRequest) {
+        return this.tasksApi.taskRequest(taskRequest);
+    }
+
+    public void setTasksApi(TasksApi tasksApi) {
+        this.tasksApi = tasksApi;
     }
 }

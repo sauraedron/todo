@@ -1,6 +1,7 @@
 package com.sauraedron.factory;
 
 import com.sauraedron.models.Task;
+import com.sauraedron.wire_models.MasterTask;
 import com.sauraedron.wire_models.TaskRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,11 +20,11 @@ class TaskFactoryTest {
     public void testCreateTask() {
         OffsetDateTime createAt = OffsetDateTime.now();
         String testDescription = "Test Description";
-        TaskRequest createTask = TaskRequest.builder().createdAt(createAt).order(BigDecimal.ONE).description(testDescription).build();
-        Task task = TaskFactory.createTask(createTask);
+        TaskRequest createTask = TaskRequest.builder().createdAt(createAt).description(testDescription).build();
+        MasterTask task = TaskFactory.createTask(createTask);
         assertEquals(BigDecimal.ONE, task.getOrder());
         assertEquals(createAt, task.getCreatedAt());
         assertEquals(testDescription, task.getDescription());
-        assertNotNull(task.getTaskId());
+        assertNotNull(task.getTaskid());
     }
 }
