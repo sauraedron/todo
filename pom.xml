@@ -44,9 +44,10 @@
                 <sourceFolder>src/main/java</sourceFolder>
               </configOptions>
               <apiPackage>com.sauraedron</apiPackage>
-              <modelPackage>com.sauraedron</modelPackage>
+              <modelPackage>com.sauraedron.wire_objects</modelPackage>
               <invokerPackage>com.sauraedron.web</invokerPackage>
               <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
+              <generateAliasAsModel>true</generateAliasAsModel>
             </configuration>
           </execution>
         </executions>
