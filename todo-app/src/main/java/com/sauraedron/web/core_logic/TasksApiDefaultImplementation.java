@@ -38,8 +38,8 @@ public class TasksApiDefaultImplementation implements TasksApi {
 
     @Override
     public ResponseEntity<MasterTask> getTaskById(String taskId) {
-        if(this.taskMap.containsKey(taskId))
-            return new ResponseEntity<>(this.taskMap.get(taskId), HttpStatus.OK);
+        if(this.taskMap.containsKey(UUID.fromString(taskId)))
+            return new ResponseEntity<>(this.taskMap.get(UUID.fromString(taskId)), HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

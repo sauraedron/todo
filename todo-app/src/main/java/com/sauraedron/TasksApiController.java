@@ -34,12 +34,12 @@ public class TasksApiController implements TasksApi {
 
     @Override
     public ResponseEntity<MasterTask> getTaskById(String taskId) {
-        return TasksApi.super.getTaskById(taskId);
+        return this.tasksApi.getTaskById(taskId);
     }
 
     @Override
     public ResponseEntity<List<MasterTask>> getTasks() {
-        return TasksApi.super.getTasks();
+        return this.tasksApi.getTasks();
     }
 
 
