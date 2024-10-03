@@ -39,7 +39,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateTask'
+              $ref: '#/components/schemas/TaskRequest'
       responses:
         '200':
           description: Task Sucessfully created
@@ -67,19 +67,20 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateTask'
+                $ref: '#/components/schemas/TaskRequest'
         
 components:
   schemas:
-    CreateTask:
+    TaskRequest:
       type: object
       properties:
         description:
           type: string
         order:
           type: number
+          format: int32
         createdAt:
-          type: number
+          type: string
           format: date-time
     UpdateTaskPatch:
       type: object
@@ -98,6 +99,7 @@ components:
             - $ref: '#/components/schemas/StateUpdate'
     TaskOrderUpdate:
       type: number
+      format: int32
     DescriptionUpdate:
       type: string
     StateUpdate:
@@ -110,6 +112,7 @@ components:
           format: uuid
         order:
           type: number
+          format: int32
         description:
           type: string
         createdAt:
@@ -124,4 +127,4 @@ components:
     InternalDataStructTask:
       type: object
       additionalProperties:
-        $ref: '#/components/schemas/CreateTask'
+        $ref: '#/components/schemas/TaskRequest'

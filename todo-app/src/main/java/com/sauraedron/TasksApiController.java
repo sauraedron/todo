@@ -1,7 +1,7 @@
 package com.sauraedron;
 
-import com.sauraedron.wire_models.CreateTask;
 import com.sauraedron.wire_models.MasterTask;
+import com.sauraedron.wire_models.TaskRequest;
 import jakarta.annotation.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,17 +30,17 @@ public class TasksApiController implements TasksApi {
     }
 
     @Override
-    public ResponseEntity<MasterTask> createTask(CreateTask createTask) {
-        return TasksApi.super.createTask(createTask);
-    }
-
-    @Override
-    public ResponseEntity<CreateTask> getTaskById(String taskId) {
+    public ResponseEntity<TaskRequest> getTaskById(String taskId) {
         return TasksApi.super.getTaskById(taskId);
     }
 
     @Override
     public ResponseEntity<List<MasterTask>> getTasks() {
         return TasksApi.super.getTasks();
+    }
+
+    @Override
+    public ResponseEntity<MasterTask> taskRequest(TaskRequest taskRequest) {
+        return TasksApi.super.taskRequest(taskRequest);
     }
 }
