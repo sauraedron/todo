@@ -22,3 +22,4 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 todo-app/src/main/java/com/sauraedron/TasksApiController.java
+todo-app/src/main/java/com/sauraedron/web/OpenApiGeneratorApplication.java

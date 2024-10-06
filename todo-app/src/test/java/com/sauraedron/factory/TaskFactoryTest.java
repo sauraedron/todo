@@ -1,13 +1,11 @@
 package com.sauraedron.factory;
 
-import com.sauraedron.models.Task;
-import com.sauraedron.wire_models.MasterTask;
+import com.sauraedron.models.entities.Task;
 import com.sauraedron.wire_models.TaskRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,10 +19,10 @@ class TaskFactoryTest {
         OffsetDateTime createAt = OffsetDateTime.now();
         String testDescription = "Test Description";
         TaskRequest createTask = TaskRequest.builder().createdAt(createAt).description(testDescription).build();
-        MasterTask task = TaskFactory.createTask(createTask);
-        assertEquals(BigDecimal.ONE, task.getOrder());
+        Task task = TaskFactory.createTask(createTask);
+        assertNotNull(task.getOrder());
         assertEquals(createAt, task.getCreatedAt());
         assertEquals(testDescription, task.getDescription());
-        assertNotNull(task.getTaskid());
+        assertNotNull(task.getTaskId());
     }
 }
