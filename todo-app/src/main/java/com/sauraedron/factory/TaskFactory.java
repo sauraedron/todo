@@ -10,7 +10,6 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 
-@Service
 public class TaskFactory {
     /**
      * Create a Fresh Task given Create Task Request
@@ -19,10 +18,11 @@ public class TaskFactory {
      */
     public static Task createTask(TaskRequest taskRequest) {
         Task task1 = new Task();
+
+        BeanUtils.copyProperties(taskRequest, task1);
         task1.setTaskId(UUID.randomUUID().toString());
         task1.setOrder(TaskOrderTracker.next().intValue());
         task1.setCreatedAt(OffsetDateTime.now());
-        BeanUtils.copyProperties(taskRequest, task1);
         return task1;
     }
 }
