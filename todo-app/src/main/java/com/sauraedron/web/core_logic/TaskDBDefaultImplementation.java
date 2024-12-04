@@ -15,6 +15,12 @@ public class TaskDBDefaultImplementation implements TaskDB {
         Task task = TaskFactory.createTask(taskRequest);
         return taskRepository.save(task);
     }
+
+    @Override
+    public Iterable<Task> getTasks() {
+        return taskRepository.findAll();
+    }
+
     @Autowired
     public void setTaskRepository(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
