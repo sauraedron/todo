@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -14,7 +15,7 @@ public class Task {
     @Column
     private String description;
     @Column(name = "ord")
-    private Integer order;
+    private BigDecimal order;
     @Column
     private OffsetDateTime createdAt;
     @Column
@@ -38,11 +39,11 @@ public class Task {
         this.description = description;
     }
 
-    public Integer getOrder() {
+    public BigDecimal getOrder() {
         return order;
     }
 
-    public void setOrder(Integer order) {
+    public void setOrder(BigDecimal order) {
         this.order = order;
     }
 
