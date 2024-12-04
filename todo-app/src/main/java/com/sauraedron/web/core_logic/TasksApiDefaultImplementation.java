@@ -4,6 +4,7 @@ import com.sauraedron.TasksApi;
 import com.sauraedron.models.entities.Task;
 import com.sauraedron.wire_models.MasterTask;
 import com.sauraedron.wire_models.TaskRequest;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,10 +28,27 @@ public class TasksApiDefaultImplementation implements TasksApi {
         return TasksApi.super.getRequest();
     }
 
+    @PostConstruct
+    public void post() {
+
+    }
+
+    boolean isFirstLoad = true;
+
     @Override
     public ResponseEntity<List<MasterTask>> getTasks() {
-        return taskDB.
+        if(isFirstLoad) {
+            taskMap.clear();
+            for(var a : taskDB.getTasks()) {
+                MasterTask masterTask = new MasterTask();
+                BeanUtils.copyProperties(a, masterTask);
+                masterTask.setTaskId(UUID.fromString(a.getTaskId()));
+                taskMap.put(masterTask.getTaskId(), masterTask);
+            }
+            isFirstLoad = false;
+        }
         return new ResponseEntity<>(new ArrayList<>(this.taskMap.values()), HttpStatus.OK);
+
     }
 
     @Override
@@ -39,9 +57,10 @@ public class TasksApiDefaultImplementation implements TasksApi {
         MasterTask masterTask = new MasterTask();
 
         BeanUtils.copyProperties(taskRequest, masterTask);
-        masterTask.setTaskid(UUID.fromString(t.getTaskId()));
-        masterTask.setOrder(BigDecimal.valueOf(t.getOrder()));
+        masterTask.setTaskId(UUID.fromString(t.getTaskId()));
+        masterTask.setOrder(t.getOrder());
         masterTask.createdAt(t.getCreatedAt());
+        taskMap.put(masterTask.getTaskId(), masterTask);
 
         return new ResponseEntity(masterTask, HttpStatus.OK);
     }
